@@ -1,3 +1,6 @@
+MIDIClient.init;
+
+m = MIDIOut(1);
 
 (
 SynthDef(\heartbeat, {
@@ -15,8 +18,10 @@ Synth(\heartbeat)
 (
 a = Task({
     50.do({ arg i;
+		m.noteOn(0, 10, 0);
 		Synth(\heartbeat);
         1.2.wait;
+		m.noteOn(0, 10, 0);
     });
 });
 )
