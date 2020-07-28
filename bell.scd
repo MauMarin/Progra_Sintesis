@@ -1,3 +1,6 @@
+MIDIClient.init;
+
+m = MIDIOut(1);
 
 (
 SynthDef(\bell, {
@@ -19,6 +22,7 @@ Synth(\bell,[\basefreq, 500]);
 t = Task({
     50.do({ arg i;
 		Synth(\bell,[\basefreq, 500]);
+		m.noteOn(0, 10, 0);
         4.wait;
     });
 });
