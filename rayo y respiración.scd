@@ -1,3 +1,8 @@
+MIDIClient.init
+
+m = MIDIOut(1);
+
+
 (
 SynthDef(\thunderbolt, {
 	|amp = 0.1|
@@ -81,9 +86,13 @@ Tdef(\breathing, {
 			var out2 = 0.387;
 			var pauseout = 0.3;
 			Synth(\breathe_in, [\in1, in1, \in2, in2, \in3, in3]);
-			(in1+in2+in3+pausein).wait;
+		    m.noteOn(0, 10, 0);
+		    (in1+in2+in3+pausein).wait;
+
 			Synth(\breathe_out, [\out1, out1, \out2, out2]);
-			(out1+out2+pauseout).wait;
+		    m.noteOn(0, 10, 0);
+		    (out1+out2+pauseout).wait;
+
 		}
 });
 
