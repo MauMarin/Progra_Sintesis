@@ -143,7 +143,11 @@ private class Track {
 float baseHue = random(360.0);
 ArrayList<Track> tracks = new ArrayList();
 int frames = 0;  // 300
+
+// ******** CAMBIO DE COLOR ********
 boolean cold = true;
+// *********************************
+
 boolean toggle = false;
 int maxFrames = 200;  //25 frames por tick
 
@@ -211,13 +215,10 @@ void draw() {
 void midiMessage(MidiMessage message) {
   int note = (int) (message.getMessage()[1] & 0xFF);
   
-  // Depending on the note that comes from SC, a different animation with its respective horizontal movement is played
-  // .ignoreRepeat() is used to run the gif just once, in order to coordinate movement with the sound input
   switch(note) {
-    case 10: //idle
+    default:
       toggle = true;
       
-    default:
      break;
   }
 }
